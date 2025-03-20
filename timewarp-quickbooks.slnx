@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Source/">
+    <Project Path="Source/TimeWarp.QuickBooks/TimeWarp.QuickBooks.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/TimeWarp.QuickBooks.Tests/TimeWarp.QuickBooks.Tests.csproj" />
+  </Folder>
+</Solution>
