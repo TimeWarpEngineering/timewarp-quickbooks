@@ -13,22 +13,45 @@ Create a new test project called TimeWarp.QuickBooks.Tests using the TimeWarp.Fi
 ## Checklist
 
 ### Design
-- [ ] Add/Update Tests
+- [x] Add/Update Tests
 
 ### Implementation
-- [ ] Create new test project TimeWarp.QuickBooks.Tests
-- [ ] Add required NuGet packages (TimeWarp.Fixie, Fixie.TestAdapter, Shouldly)
-- [ ] Create dotnet tool manifest and install Fixie.Console
-- [ ] Configure TestingConvention class
-- [ ] Add ConventionTests.cs example file
-- [ ] Verify tests run successfully
+- [x] Create new test project TimeWarp.QuickBooks.Tests
+- [x] Add required NuGet packages (TimeWarp.Fixie, Fixie.TestAdapter, Shouldly)
+- [x] Create dotnet tool manifest and install Fixie.Console
+- [x] Configure TestingConvention class
+- [x] Add ConventionTests.cs example file
+- [x] Verify tests run successfully
+- [x] Move project to Tests directory
 
 ### Documentation
-- [ ] Update Documentation
+- [x] Update Documentation
 
 ## Notes
 
 Reference: [TimeWarp.Fixie GitHub Repository](https://github.com/TimeWarpEngineering/timewarp-fixie)
+
+## Implementation Notes
+
+The TimeWarp.QuickBooks.Tests project has been successfully created and configured:
+
+1. Created a new classlib project named TimeWarp.QuickBooks.Tests
+2. Added the required NuGet packages:
+   - TimeWarp.Fixie
+   - Fixie.TestAdapter
+   - Shouldly
+3. Created a dotnet tool manifest and installed Fixie.Console
+4. Created the TestingConvention class that inherits from TimeWarp.Fixie.TestingConvention
+5. Added the ConventionTests.cs example file with various test examples:
+   - Basic test
+   - Test with Skip attribute
+   - Test with TestTag attribute
+   - Parameterized tests using Input attribute
+6. Verified tests run successfully with the following results:
+   - 4 passed tests
+   - 1 skipped test (as expected with the Skip attribute)
+   - Test execution completed in 0.33 seconds
+7. Moved the project to the Tests directory to follow project structure conventions
 
 ## Implementation Steps
 
@@ -92,3 +115,6 @@ Reference: [TimeWarp.Fixie GitHub Repository](https://github.com/TimeWarpEnginee
 7. Run tests to verify setup:
    ```console
    dotnet fixie
+   ```
+
+8. Move project to Tests directory to follow project structure conventions
