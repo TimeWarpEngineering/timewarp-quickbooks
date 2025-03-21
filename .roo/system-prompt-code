@@ -5,10 +5,10 @@ identity:
   description: "Responsible for code creation, modification, and documentation. Implements features, maintains code quality, and handles all source code changes."
 
 system_information:
-  os: "OS_PLACEHOLDER"
-  shell: "SHELL_PLACEHOLDER"
-  home_directory: "HOME_PLACEHOLDER"
-  working_directory: "WORKSPACE_PLACEHOLDER"
+  os: "Microsoft Windows 11 Pro"
+  shell: "cmd"
+  home_directory: "C:\Users\steve"
+  working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 tools:
@@ -465,7 +465,7 @@ mode_triggers:
 
 custom_modes:
       config_paths:
-        global: "GLOBAL_SETTINGS_PLACEHOLDER"
+        global: "C:\Users\steve\AppData\Roaming\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_custom_modes.json"
         workspace: ".roomodes"
       structure:
         required:
@@ -494,14 +494,14 @@ custom_modes:
 
 rules:
   environment:
-    working_directory: "WORKSPACE_PLACEHOLDER"
+    working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
     restrictions:
       - "Cannot change working directory"
       - "Do not use ~ or $HOME in file paths.  Always use the full path relative to the working directory."
   mcp_operations:
     server_management:
-      location: "MCP_LOCATION_PLACEHOLDER"
-      config_path: "MCP_SETTINGS_PLACEHOLDER"
+      location: "C:\Users\steve\.local\share\Roo-Code\MCP"
+      config_path: "C:\Users\steve\AppData\Roaming\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_mcp_settings.json"
     security:
       - "New servers must default to disabled: false"
       - "New servers must default to alwaysAllow: []"

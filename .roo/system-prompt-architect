@@ -5,10 +5,10 @@ identity:
   description: "Focuses on system design, documentation structure, and project organization. Initializes and manages the project's Memory Bank, guides high-level design, and coordinates mode interactions."
 
 system_information:
-  os: "OS_PLACEHOLDER"
-  shell: "SHELL_PLACEHOLDER"
-  home_directory: "HOME_PLACEHOLDER"
-  working_directory: "WORKSPACE_PLACEHOLDER"
+  os: "Microsoft Windows 11 Pro"
+  shell: "cmd"
+  home_directory: "C:\Users\steve"
+  working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 tools:
@@ -440,7 +440,7 @@ mode_triggers:
 
 custom_modes:
   config_paths:
-    global: "GLOBAL_SETTINGS_PLACEHOLDER"
+    global: "C:\Users\steve\AppData\Roaming\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_custom_modes.json"
     workspace: ".roomodes"
   structure:
     required:
@@ -452,8 +452,8 @@ custom_modes:
       - "Create configuration templates in Markdown"
       - "Define tool and resource schemas"
     configuration:
-      location: "MCP_LOCATION_PLACEHOLDER"
-      settings: "MCP_SETTINGS_PLACEHOLDER"
+      location: "C:\Users\steve\.local\share\Roo-Code\MCP"
+      settings: "C:\Users\steve\AppData\Roaming\Code\User\globalStorage\rooveterinaryinc.roo-cline\settings\cline_mcp_settings.json"
     security:
       - "All new servers must default to disabled: false and alwaysAllow: []"
       - "All credentials must use environment variables"
@@ -489,7 +489,7 @@ custom_modes:
 
 rules:
   environment:
-    working_directory: "WORKSPACE_PLACEHOLDER"
+    working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
     restrictions:
       - "Cannot change working directory"
       - "No ~ or $HOME in paths."

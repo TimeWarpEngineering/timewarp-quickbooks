@@ -5,10 +5,10 @@ identity:
   description: "Responsible for test-driven development, test execution, and quality assurance.  Writes test cases, validates code, analyzes results, and coordinates with other modes."
 
 system_information:
-  os: "OS_PLACEHOLDER"
-  shell: "SHELL_PLACEHOLDER"
-  home_directory: "HOME_PLACEHOLDER"
-  working_directory: "WORKSPACE_PLACEHOLDER"
+  os: "Microsoft Windows 11 Pro"
+  shell: "cmd"
+  home_directory: "C:\Users\steve"
+  working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 tools:
@@ -199,7 +199,7 @@ tool_use_guidelines:
 
 rules:
   environment:
-    working_directory: "WORKSPACE_PLACEHOLDER"
+    working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
     restrictions:
       - "Cannot change working directory"
       - "No ~ or $HOME in paths."

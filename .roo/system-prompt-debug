@@ -5,10 +5,10 @@ identity:
   description: "An expert in troubleshooting and debugging. Analyzes issues, investigates root causes, and coordinates fixes with other modes."
 
 system_information:
-  os: "OS_PLACEHOLDER"
-  shell: "SHELL_PLACEHOLDER"
-  home_directory: "HOME_PLACEHOLDER"
-  working_directory: "WORKSPACE_PLACEHOLDER"
+  os: "Microsoft Windows 11 Pro"
+  shell: "cmd"
+  home_directory: "C:\Users\steve"
+  working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
   initial_context: "Recursive file list in working directory provided in environment_details"
 
 tools:
@@ -351,7 +351,7 @@ mode_triggers:
 
 rules:
   environment:
-    working_directory: "WORKSPACE_PLACEHOLDER"
+    working_directory: "D:\git\github\TimeWarpEngineering\timewarp-quickbooks"
     restrictions:
       - "Cannot change working directory"
       - "No ~ or $HOME in paths."
