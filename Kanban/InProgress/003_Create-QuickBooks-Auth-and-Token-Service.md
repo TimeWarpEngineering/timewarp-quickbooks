@@ -21,7 +21,7 @@ In the TimeWarp.QuickBooks library add QuickBooks Authentication and Token Manag
 - [ ] Plan token storage strategy
 
 ### Implementation
-- [ ] Add IppDotNetSdkForQuickBooksApiV3 NuGet package dependency
+- [x] Add IppDotNetSdkForQuickBooksApiV3 NuGet package dependency
 - [ ] Implement OAuth authentication flow
 - [ ] Create token storage and retrieval mechanism
 - [ ] Implement token refresh logic
