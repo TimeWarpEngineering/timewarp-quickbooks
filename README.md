@@ -1,14 +1,22 @@
+[![Dotnet](https://img.shields.io/badge/dotnet-9.0-blue)](https://dotnet.microsoft.com)
+[![Stars](https://img.shields.io/github/stars/TimeWarpEngineering/timewarp-quickbooks?logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks)
+[![Discord](https://img.shields.io/discord/715274085940199487?logo=discord)](https://discord.gg/7F4bS2T)
+[![Build Status](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_apis/build/status/TimeWarp.QuickBooks?branchName=master)](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_build/latest?definitionId=1)
+[![NuGet](https://img.shields.io/nuget/v/TimeWarp.QuickBooks?logo=nuget)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
+[![NuGet](https://img.shields.io/nuget/dt/TimeWarp.QuickBooks?logo=nuget)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
+[![Issues Open](https://img.shields.io/github/issues/TimeWarpEngineering/timewarp-quickbooks.svg?logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks/issues)
+[![Forks](https://img.shields.io/github/forks/TimeWarpEngineering/timewarp-quickbooks)](https://github.com/TimeWarpEngineering/timewarp-quickbooks)
+[![License](https://img.shields.io/github/license/TimeWarpEngineering/timewarp-quickbooks.svg?style=flat-square&logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2FTimeWarpEngineering%2Ftimewarp-quickbooks)](https://twitter.com/intent/tweet?url=https://github.com/TimeWarpEngineering/timewarp-quickbooks)
+
+[![Twitter](https://img.shields.io/twitter/follow/StevenTCramer.svg)](https://twitter.com/intent/follow?screen_name=StevenTCramer)
+[![Twitter](https://img.shields.io/twitter/follow/TheFreezeTeam1.svg)](https://twitter.com/intent/follow?screen_name=TheFreezeTeam1)
+
 # TimeWarp.QuickBooks
 
 ![TimeWarp Logo](Assets/Logo.svg)
 
 TimeWarp.QuickBooks is a .NET library for QuickBooks Online integration.
-
-[![Build Status](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_apis/build/status/TimeWarp.QuickBooks?branchName=master)](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_build/latest?definitionId=1)
-[![NuGet](https://img.shields.io/nuget/v/TimeWarp.QuickBooks.svg?style=flat-square)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
-[![Discord](https://img.shields.io/discord/715274085940199487?logo=discord)](https://discord.gg/7F4bS2T)
-[![Stars](https://img.shields.io/github/stars/TimeWarpEngineering/timewarp-quickbooks?logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks)
-[![License](https://img.shields.io/github/license/TimeWarpEngineering/timewarp-quickbooks.svg?style=flat-square&logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks/blob/master/LICENSE)
 
 ## Give a Star! :star:
 
