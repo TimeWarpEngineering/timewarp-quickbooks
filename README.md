@@ -1,7 +1,7 @@
 [![Dotnet](https://img.shields.io/badge/dotnet-9.0-blue)](https://dotnet.microsoft.com)
 [![Stars](https://img.shields.io/github/stars/TimeWarpEngineering/timewarp-quickbooks?logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks)
 [![Discord](https://img.shields.io/discord/715274085940199487?logo=discord)](https://discord.gg/7F4bS2T)
-[![Build Status](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_apis/build/status/TimeWarp.QuickBooks?branchName=master)](https://dev.azure.com/timewarpengineering/TimeWarp.QuickBooks/_build/latest?definitionId=1)
+[![Build Status](https://github.com/TimeWarpEngineering/timewarp-quickbooks/actions/workflows/ci-build.yml/badge.svg)](https://github.com/TimeWarpEngineering/timewarp-quickbooks/actions/workflows/ci-build.yml)
 [![NuGet](https://img.shields.io/nuget/v/TimeWarp.QuickBooks?logo=nuget)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
 [![NuGet](https://img.shields.io/nuget/dt/TimeWarp.QuickBooks?logo=nuget)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
 [![Issues Open](https://img.shields.io/github/issues/TimeWarpEngineering/timewarp-quickbooks.svg?logo=github)](https://github.com/TimeWarpEngineering/timewarp-quickbooks/issues)
@@ -42,6 +42,19 @@ dotnet add package TimeWarp.QuickBooks
 You can see the latest NuGet packages from the official [TimeWarp NuGet page](https://www.nuget.org/profiles/TimeWarp.Enterprises).
 
 * [TimeWarp.QuickBooks](https://www.nuget.org/packages/TimeWarp.QuickBooks/) [![NuGet](https://img.shields.io/nuget/v/TimeWarp.QuickBooks?logo=nuget)](https://www.nuget.org/packages/TimeWarp.QuickBooks/)
+
+## CI/CD Pipeline
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- **CI Build**: Runs on pull requests to validate code quality
+- **Release Build**: Automatically publishes new versions to NuGet when pushed to the master branch
+
+### Required GitHub Secrets
+
+To use the GitHub Actions workflows, you need to configure the following secret in your repository:
+
+- `PUBLISH_TO_NUGET_ORG`: Your NuGet API key for publishing packages
 
 ## Documentation
 
