@@ -96,13 +96,13 @@ app.MapGet("/callback", async (HttpContext context, IQuickBooksOAuthService oaut
 <body>
     <h1>Authorization Successful!</h1>
     <h2>Access Token:</h2>
-    <pre>{result.Tokens.AccessToken}</pre>
+    <pre>{result.Tokens?.AccessToken ?? "N/A"}</pre>
     
     <h2>Refresh Token:</h2>
-    <pre>{result.Tokens.RefreshToken}</pre>
+    <pre>{result.Tokens?.RefreshToken ?? "N/A"}</pre>
     
     <h2>Realm ID:</h2>
-    <pre>{result.RealmId}</pre>
+    <pre>{result.RealmId ?? "N/A"}</pre>
     
     <p><a href=""/"">Back to Home</a></p>
 </body>
