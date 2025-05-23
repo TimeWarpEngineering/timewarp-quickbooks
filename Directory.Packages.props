@@ -1,0 +1,20 @@
+<Project>
+  <!-- 
+    This file centralizes package version management for all projects in the repository.
+    It ensures consistent package versions across all projects and simplifies updates.
+  -->
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- QuickBooks SDK -->
+    <PackageVersion Include="IppDotNetSdkForQuickBooksApiV3" Version="14.7.0" />
+    
+    <!-- Testing packages -->
+    <PackageVersion Include="Fixie.TestAdapter" Version="4.1.0" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
+    <PackageVersion Include="TimeWarp.Fixie" Version="3.0.0" />
+  </ItemGroup>
+</Project>
