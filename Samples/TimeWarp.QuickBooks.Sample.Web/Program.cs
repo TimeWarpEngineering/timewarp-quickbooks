@@ -1,5 +1,6 @@
 using TimeWarp.QuickBooks.Authentication;
 using TimeWarp.QuickBooks.Authentication.Models;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,9 +38,20 @@ app.MapGet("/", () => Results.Content(@"
 ", "text/html"));
 
 // Start OAuth flow
-app.MapGet("/auth", (IQuickBooksOAuthService oauthService) =>
+app.MapGet("/auth", (IQuickBooksOAuthService oauthService, HttpContext context) =>
 {
-  string authUrl = oauthService.GetAuthorizationUrl("state123");
+  // Generate a random state value to prevent CSRF
+  string state = Guid.NewGuid().ToString();
+  
+  // Store the state in session or cookie for verification later
+  context.Response.Cookies.Append("OAuthState", state, new CookieOptions
+  {
+    HttpOnly = true,
+    Secure = true,
+    SameSite = SameSiteMode.Lax
+  });
+  
+  string authUrl = oauthService.GenerateAuthorizationUrl(state);
   return Results.Redirect(authUrl);
 });
 
@@ -50,12 +62,25 @@ app.MapGet("/callback", async (HttpContext context, IQuickBooksOAuthService oaut
   string? state = context.Request.Query["state"];
   string? realmId = context.Request.Query["realmId"];
   
+  // Retrieve the stored state
+  context.Request.Cookies.TryGetValue("OAuthState", out string? expectedState);
+  
   if (string.IsNullOrEmpty(code))
   {
     return Results.Content("<h1>Error</h1><p>Authorization code is missing</p>", "text/html");
   }
   
-  QuickBooksOAuthCallbackResult result = await oauthService.HandleCallbackAsync(code, realmId);
+  if (string.IsNullOrEmpty(state) || string.IsNullOrEmpty(expectedState) || state != expectedState)
+  {
+    return Results.Content("<h1>Error</h1><p>Invalid state parameter</p>", "text/html");
+  }
+  
+  QuickBooksOAuthCallbackResult result = await oauthService.HandleCallbackAsync(
+    code,
+    state,
+    realmId ?? string.Empty,
+    expectedState
+  );
   
   // Display the access token and other information
   return Results.Content($@"
