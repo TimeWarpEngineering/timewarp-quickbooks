@@ -23,7 +23,7 @@ public class QuickBooksTokens
   /// <summary>
   /// Gets or sets the expiration time of the access token in seconds from the time it was issued.
   /// </summary>
-  public int ExpiresIn { get; set; }
+  public long ExpiresIn { get; set; }
 
   /// <summary>
   /// Gets or sets the UTC date and time when the access token was issued.
