@@ -1,9 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Project-specific properties (if any) -->
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!-- Any project-specific properties that aren't in Directory.Build.props -->
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IppDotNetSdkForQuickBooksApiV3" />
+  </ItemGroup>
 
 </Project>

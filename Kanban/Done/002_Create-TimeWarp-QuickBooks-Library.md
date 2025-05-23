@@ -15,10 +15,10 @@ Create a new class library project called TimeWarp.QuickBooks in the Source dire
 - [x] Navigate to the Source directory
 - [x] Create new class library project TimeWarp.QuickBooks
 - [x] Verify project structure
-- [ ] Add initial project files as needed
+- [x] Add initial project files as needed
 
 ### Documentation
-- [ ] Update Documentation as needed
+- [x] Update Documentation as needed
 
 ## Notes
 

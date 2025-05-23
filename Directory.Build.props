@@ -1,0 +1,66 @@
+<Project>
+  <!-- 
+    This file contains common MSBuild properties and items that are automatically imported
+    by all projects in this repository. It centralizes common settings to ensure consistency
+    across all projects and simplify maintenance.
+  -->
+
+  <!-- Common project properties -->
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+  </PropertyGroup>
+
+  <!-- Assembly information -->
+  <PropertyGroup>
+    <Company>TimeWarp Engineering</Company>
+    <Authors>TimeWarp Engineering</Authors>
+    <Product>TimeWarp.QuickBooks</Product>
+    <Copyright>Copyright © TimeWarp Engineering $([System.DateTime]::Now.ToString('yyyy'))</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
+  <!-- Package metadata -->
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/TimeWarpEngineering/timewarp-quickbooks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/TimeWarpEngineering/timewarp-quickbooks</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>TimeWarp;QuickBooks</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <!-- Source Link settings for deterministic builds -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- Documentation generation settings -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn> <!-- Suppress XML comment warnings -->
+  </PropertyGroup>
+
+  <!-- Version information -->
+  <PropertyGroup>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
+  </PropertyGroup>
+
+  <!-- Common package files -->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Assets\Logo.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+</Project>

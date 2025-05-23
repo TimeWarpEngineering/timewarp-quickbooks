@@ -1,15 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Project-specific properties (if any) -->
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <!-- Any project-specific properties that aren't in Directory.Build.props -->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fixie.TestAdapter" Version="4.1.0" />
-    <PackageReference Include="Shouldly" Version="4.3.0" />
-    <PackageReference Include="TimeWarp.Fixie" Version="3.0.0" />
+    <PackageReference Include="Fixie.TestAdapter" />
+    <PackageReference Include="Shouldly" />
+    <PackageReference Include="TimeWarp.Fixie" />
   </ItemGroup>
 
 </Project>
