@@ -26,6 +26,12 @@ public class QuickBooksTokens
   public long ExpiresIn { get; set; }
 
   /// <summary>
+  /// Gets or sets the expiration time of the refresh token in seconds from the time it was issued.
+  /// This corresponds to the x_refresh_token_expires_in field from QuickBooks OAuth response.
+  /// </summary>
+  public long RefreshTokenExpiresIn { get; set; }
+
+  /// <summary>
   /// Gets or sets the UTC date and time when the access token was issued.
   /// </summary>
   public DateTime IssuedUtc { get; set; } = DateTime.UtcNow;
@@ -42,5 +48,14 @@ public class QuickBooksTokens
   public bool IsExpired()
   {
     return DateTime.UtcNow >= IssuedUtc.AddSeconds(ExpiresIn - 300); // 5-minute buffer
+  }
+
+  /// <summary>
+  /// Determines whether the refresh token has expired.
+  /// </summary>
+  /// <returns>True if the refresh token has expired; otherwise, false.</returns>
+  public bool IsRefreshTokenExpired()
+  {
+    return DateTime.UtcNow >= IssuedUtc.AddSeconds(RefreshTokenExpiresIn - 300); // 5-minute buffer
   }
 }

@@ -109,6 +109,7 @@ public class QuickBooksOAuthService : IQuickBooksOAuthService
         RefreshToken = tokenResponse.RefreshToken,
         TokenType = tokenResponse.TokenType,
         ExpiresIn = tokenResponse.AccessTokenExpiresIn,
+        RefreshTokenExpiresIn = tokenResponse.RefreshTokenExpiresIn,
         IssuedUtc = DateTime.UtcNow,
         RealmId = realmId
       };
@@ -176,6 +177,7 @@ public class QuickBooksOAuthService : IQuickBooksOAuthService
         RefreshToken = tokenResponse.RefreshToken,
         TokenType = tokenResponse.TokenType,
         ExpiresIn = tokenResponse.AccessTokenExpiresIn,
+        RefreshTokenExpiresIn = tokenResponse.RefreshTokenExpiresIn,
         IssuedUtc = DateTime.UtcNow,
         RealmId = tokens.RealmId
       };

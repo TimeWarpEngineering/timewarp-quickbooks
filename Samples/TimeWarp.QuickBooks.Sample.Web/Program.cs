@@ -104,8 +104,11 @@ app.MapGet("/callback", async (HttpContext context, IQuickBooksOAuthService oaut
     <h2>Realm ID:</h2>
     <pre>{result.RealmId ?? "N/A"}</pre>
     
-    <h2>Expires In:</h2>
+    <h2>Access Token Expires In:</h2>
     <pre>{result.Tokens?.ExpiresIn} seconds ({TimeSpan.FromSeconds(result.Tokens?.ExpiresIn ?? 0).TotalHours:0.##} hours)</pre>
+    
+    <h2>Refresh Token Expires In:</h2>
+    <pre>{result.Tokens?.RefreshTokenExpiresIn} seconds ({TimeSpan.FromSeconds(result.Tokens?.RefreshTokenExpiresIn ?? 0).TotalDays:0.##} days)</pre>
     
     <p><a href=""/"">Back to Home</a></p>
 </body>
