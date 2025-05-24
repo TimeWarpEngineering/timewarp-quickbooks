@@ -104,6 +104,9 @@ app.MapGet("/callback", async (HttpContext context, IQuickBooksOAuthService oaut
     <h2>Realm ID:</h2>
     <pre>{result.RealmId ?? "N/A"}</pre>
     
+    <h2>Expires In:</h2>
+    <pre>{result.Tokens?.ExpiresIn} seconds ({TimeSpan.FromSeconds(result.Tokens?.ExpiresIn ?? 0).TotalHours:0.##} hours)</pre>
+    
     <p><a href=""/"">Back to Home</a></p>
 </body>
 </html>
