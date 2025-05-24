@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Samples/">
+    <Project Path="Samples/TimeWarp.QuickBooks.Sample.Web/TimeWarp.QuickBooks.Sample.Web.csproj" />
+  </Folder>
   <Folder Name="/Source/">
     <Project Path="Source/TimeWarp.QuickBooks/TimeWarp.QuickBooks.csproj" />
   </Folder>
