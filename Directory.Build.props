@@ -26,6 +26,7 @@
 
   <!-- Package metadata -->
   <PropertyGroup>
+    <Description>QuickBooks Online API integration with OAuth authentication and data access capabilities.</Description>
     <PackageProjectUrl>https://github.com/TimeWarpEngineering/timewarp-quickbooks</PackageProjectUrl>
     <RepositoryUrl>https://github.com/TimeWarpEngineering/timewarp-quickbooks</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
@@ -52,10 +53,10 @@
 
   <!-- Version information -->
   <PropertyGroup>
-    <VersionPrefix>0.1.1</VersionPrefix>
+    <VersionPrefix>0.1.2</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
-    <AssemblyVersion>0.1.1.0</AssemblyVersion>
-    <FileVersion>0.1.1.0</FileVersion>
+    <AssemblyVersion>0.1.2.0</AssemblyVersion>
+    <FileVersion>0.1.2.0</FileVersion>
   </PropertyGroup>
 
   <!-- Common package files -->
