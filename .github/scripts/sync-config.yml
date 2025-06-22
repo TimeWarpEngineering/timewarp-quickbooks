@@ -1,0 +1,101 @@
+# Configuration for sync-configurable-files workflow
+# This file defines which files should be synced from the parent TimeWarp Architecture repository
+
+# Source repository configuration
+source_repo: TimeWarpEngineering/timewarp-architecture
+source_branch: master
+
+# Repository type - determines which file sets to sync
+repository_type: dotnet
+
+# Files to sync from the parent repository
+# Each entry specifies the source path and destination path
+sync_files:
+  # .NET Build Configuration Files
+  - source_path: TimeWarp.Architecture/Directory.Build.props
+    destination_path: Directory.Build.props
+    merge_strategy: replace_with_local_preservation
+    preserve_sections:
+      - "<!-- Package metadata -->"
+      - "<!-- Version information -->"
+      - "<!-- Common package files -->"
+
+  - source_path: TimeWarp.Architecture/Directory.Build.targets  
+    destination_path: Directory.Build.targets
+    merge_strategy: replace
+    create_if_missing: true
+
+  - source_path: TimeWarp.Architecture/global.json
+    destination_path: global.json  
+    merge_strategy: replace
+    create_if_missing: true
+
+  # Development Configuration Files
+  - source_path: TimeWarp.Architecture/.editorconfig
+    destination_path: .editorconfig
+    merge_strategy: replace
+    create_if_missing: true
+
+  # GitIgnore with special merge handling
+  - source_path: TimeWarp.Architecture/.gitignore
+    destination_path: .gitignore
+    merge_strategy: merge_sections
+    section_markers:
+      global_start: "# ----- Global .gitignore (synced from TimeWarp Architecture) -----"
+      global_end: "# ----- Repository-specific .gitignore -----"
+      local_start: "# ----- Repository-specific .gitignore -----"
+
+  # GitHub Workflow Templates (optional - only if they exist in parent)
+  - source_path: TimeWarp.Architecture/.github/workflows/build.yml
+    destination_path: .github/workflows/build.yml
+    merge_strategy: replace
+    create_if_missing: false
+    optional: true
+
+  - source_path: TimeWarp.Architecture/.github/workflows/codeql.yml
+    destination_path: .github/workflows/codeql.yml  
+    merge_strategy: replace
+    create_if_missing: false
+    optional: true
+
+# Exclusion patterns - files that should never be synced
+exclude_patterns:
+  - "*.user"
+  - "*.suo" 
+  - "**/bin/**"
+  - "**/obj/**"
+  - "appsettings.*.json"
+  - "launchSettings.json"
+
+# Local preservation rules
+preserve_local:
+  # Preserve local package metadata and version info in Directory.Build.props
+  - file: Directory.Build.props
+    sections:
+      - xpath: "//PropertyGroup[Description or PackageProjectUrl or RepositoryUrl]"
+      - xpath: "//PropertyGroup[VersionPrefix or VersionSuffix or AssemblyVersion]"
+      - xpath: "//ItemGroup[None[@Include and contains(@Include, 'Logo')]]"
+
+  # Preserve local .gitignore additions
+  - file: .gitignore
+    preserve_after_marker: "# ----- Repository-specific .gitignore -----"
+
+# Post-sync validation
+validation:
+  # Ensure these files compile/parse correctly after sync
+  build_check: true
+  powershell_syntax_check: true
+  
+  # Files that must exist after sync
+  required_files:
+    - Directory.Build.props
+    - .gitignore
+
+# Notification settings
+notifications:
+  create_pr: true
+  pr_reviewers: []  # Add default reviewers if needed
+  pr_labels:
+    - "automation"
+    - "configuration"
+    - "chore"
