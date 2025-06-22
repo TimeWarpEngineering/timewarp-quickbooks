@@ -1,0 +1,75 @@
+name: Sync Configurable Files
+
+on:
+  schedule:
+    # Run weekly on Sundays at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Perform a dry run (no changes will be made)'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup PowerShell
+        shell: pwsh
+        run: |
+          Write-Host "PowerShell version: $($PSVersionTable.PSVersion)"
+
+      - name: Run sync script
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          ./.github/scripts/sync-configurable-files.ps1
+
+      - name: Create Pull Request
+        if: success() && env.SYNC_CHANGES_MADE == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            chore: sync configurable files from timewarp-architecture
+            
+            Automatically synced configuration files to maintain consistency
+            with organizational standards.
+          title: 'chore: sync configurable files from timewarp-architecture'
+          body: |
+            ## Summary
+            This PR automatically syncs configurable files from the parent TimeWarp Architecture repository to maintain consistency with organizational standards.
+
+            ### Files Synced
+            - Configuration files for .NET development
+            - Common development tools configuration
+            - Standard ignore patterns (merged with local additions)
+
+            ### Review Notes
+            - This is an automated sync from `TimeWarpEngineering/timewarp-architecture`
+            - Local customizations in synced files may have been preserved or updated
+            - Please review changes before merging
+
+            ## Test Plan
+            - [ ] Verify build still works after sync
+            - [ ] Check that local customizations are preserved
+            - [ ] Ensure no sensitive information was inadvertently synced
+
+            🤖 Generated with [Claude Code](https://claude.ai/code)
+          branch: sync/configurable-files-${{ github.run_number }}
+          delete-branch: true
+          draft: false
