@@ -19,7 +19,7 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       issues: read
       id-token: write
@@ -57,3 +57,26 @@ jobs:
           # claude_env: |
           #   NODE_ENV: test
 
+      - name: Commit changes made by Claude
+        if: always()
+        run: |
+          git config --local user.email "claude@anthropic.com"
+          git config --local user.name "Claude Code"
+          
+          # Check if there are any changes
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            # Add all changes
+            git add .
+            
+            # Commit with a descriptive message
+            git commit -m "Claude Code: Auto-commit changes made by AI assistant
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>" || echo "No changes to commit"
+            
+            # Push changes back to the branch
+            git push origin HEAD || echo "Failed to push changes"
+          else
+            echo "No changes detected"
+          fi
