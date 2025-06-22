@@ -63,20 +63,23 @@ jobs:
           git config --local user.email "claude@anthropic.com"
           git config --local user.name "Claude Code"
           
-          # Check if there are any changes
-          if ! git diff --quiet || ! git diff --cached --quiet; then
-            # Add all changes
-            git add .
+          # Check for any changes (tracked, staged, or untracked)
+          git add .
+          
+          # Check if there are changes to commit after adding
+          if ! git diff --cached --quiet; then
+            echo "Changes detected, committing..."
             
             # Commit with a descriptive message
             git commit -m "Claude Code: Auto-commit changes made by AI assistant" \
               -m "" \
               -m "🤖 Generated with [Claude Code](https://claude.ai/code)" \
               -m "" \
-              -m "Co-Authored-By: Claude <noreply@anthropic.com>" || echo "No changes to commit"
+              -m "Co-Authored-By: Claude <noreply@anthropic.com>"
             
             # Push changes back to the branch
-            git push origin HEAD || echo "Failed to push changes"
+            git push origin HEAD
+            echo "Changes successfully committed and pushed"
           else
-            echo "No changes detected"
+            echo "No changes detected after adding files"
           fi
