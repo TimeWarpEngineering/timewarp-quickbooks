@@ -69,11 +69,11 @@ jobs:
             git add .
             
             # Commit with a descriptive message
-            git commit -m "Claude Code: Auto-commit changes made by AI assistant
-
-🤖 Generated with [Claude Code](https://claude.ai/code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>" || echo "No changes to commit"
+            git commit -m "Claude Code: Auto-commit changes made by AI assistant" \
+              -m "" \
+              -m "🤖 Generated with [Claude Code](https://claude.ai/code)" \
+              -m "" \
+              -m "Co-Authored-By: Claude <noreply@anthropic.com>" || echo "No changes to commit"
             
             # Push changes back to the branch
             git push origin HEAD || echo "Failed to push changes"
