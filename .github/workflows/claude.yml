@@ -56,36 +56,3 @@ jobs:
           # Optional: Custom environment variables for Claude
           # claude_env: |
           #   NODE_ENV: test
-
-      - name: Commit changes made by Claude
-        if: always()
-        env:
-          GITHUB_TOKEN: ${{ secrets.SYNC_PAT }}
-        run: |
-          git config --local user.email "claude@anthropic.com"
-          git config --local user.name "Claude Code"
-          
-          # Show current branch for visibility
-          echo "Current branch: $(git branch --show-current)"
-          
-          # Check for any changes (tracked, staged, or untracked)
-          git add .
-          
-          # Check if there are changes to commit after adding
-          if ! git diff --cached --quiet; then
-            echo "Changes detected, committing..."
-            
-            # Commit with a descriptive message
-            git commit -m "Claude Code: Auto-commit changes made by AI assistant" \
-              -m "" \
-              -m "🤖 Generated with [Claude Code](https://claude.ai/code)" \
-              -m "" \
-              -m "Co-Authored-By: Claude <noreply@anthropic.com>"
-            
-            # Push changes back to the branch using SYNC_PAT
-            echo "Pushing to branch: $(git branch --show-current)"
-            git push origin HEAD
-            echo "Changes successfully committed and pushed"
-          else
-            echo "No changes detected after adding files"
-          fi
