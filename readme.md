@@ -14,7 +14,7 @@
 
 # TimeWarp.QuickBooks
 
-![TimeWarp Logo](Assets/Logo.svg)
+![TimeWarp Logo](assets/logo.svg)
 
 TimeWarp.QuickBooks is a .NET library for QuickBooks Online integration.
 
@@ -70,7 +70,7 @@ This project follows the Kanban methodology for task management. You can find cu
 ### Running Tests
 
 ```console
-pwsh RunTests.ps1
+pwsh run-tests.ps1
 ```
 
 ## Contributing

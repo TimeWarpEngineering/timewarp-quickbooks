@@ -9,7 +9,7 @@ TimeWarp.QuickBooks is a .NET 9.0 library for QuickBooks Online integration. It 
 ## Common Commands
 
 ### Build and Test
-- **Run tests**: `pwsh RunTests.ps1` or `dotnet fixie Tests/TimeWarp.QuickBooks.Tests`
+- **Run tests**: `pwsh run-tests.ps1` or `dotnet fixie Tests/TimeWarp.QuickBooks.Tests`
 - **Build solution**: `dotnet build timewarp-quickbooks.slnx`
 - **Run sample app**: `cd Samples/TimeWarp.QuickBooks.Sample.Web && dotnet run`
 
