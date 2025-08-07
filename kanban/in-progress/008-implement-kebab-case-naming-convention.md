@@ -81,76 +81,76 @@ This phase is safe to implement first as it doesn't affect compilation.
 - [x] `.ai/Overview.md` → `.ai/overview.md`
 - [x] `.ai/ProjectSage/Overview.md` → `.ai/project-sage/overview.md`
 
-### Phase 3: Project Structure (Most Complex)
+### Phase 3: Project Structure (Most Complex) ✅ COMPLETED
 #### 3.1 Rename Source Structure
-- [ ] `Source/` → `source/`
-- [ ] `Source/TimeWarp.QuickBooks/` → `source/timewarp-quickbooks/`
-- [ ] `Source/TimeWarp.QuickBooks/Api/` → `source/timewarp-quickbooks/api/`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/` → `source/timewarp-quickbooks/authentication/`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/Models/` → `source/timewarp-quickbooks/authentication/models/`
+- [x] `Source/` → `source/`
+- [x] `Source/TimeWarp.QuickBooks/` → `source/timewarp-quickbooks/`
+- [x] `Source/TimeWarp.QuickBooks/Api/` → `source/timewarp-quickbooks/api/`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/` → `source/timewarp-quickbooks/authentication/`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/Models/` → `source/timewarp-quickbooks/authentication/models/`
 
 #### 3.2 Rename Source Files
-- [ ] `Source/TimeWarp.QuickBooks/TimeWarp.QuickBooks.csproj` → `source/timewarp-quickbooks/timewarp-quickbooks.csproj`
-- [ ] `Source/TimeWarp.QuickBooks/GlobalUsings.cs` → `source/timewarp-quickbooks/global-usings.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Api/IQuickBooksApiClient.cs` → `source/timewarp-quickbooks/api/i-quickbooks-api-client.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiClient.cs` → `source/timewarp-quickbooks/api/quickbooks-api-client.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiException.cs` → `source/timewarp-quickbooks/api/quickbooks-api-exception.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiOptions.cs` → `source/timewarp-quickbooks/api/quickbooks-api-options.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Api/QuickBooksHttpClient.cs` → `source/timewarp-quickbooks/api/quickbooks-http-client.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/IQuickBooksOAuthService.cs` → `source/timewarp-quickbooks/authentication/i-quickbooks-oauth-service.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/QuickBooksOAuthService.cs` → `source/timewarp-quickbooks/authentication/quickbooks-oauth-service.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/ServiceCollectionExtensions.cs` → `source/timewarp-quickbooks/authentication/service-collection-extensions.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksOAuthCallbackResult.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-oauth-callback-result.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksOAuthOptions.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-oauth-options.cs`
-- [ ] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksTokens.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-tokens.cs`
-- [ ] `Source/Overview.md` → `source/overview.md`
+- [x] `Source/TimeWarp.QuickBooks/TimeWarp.QuickBooks.csproj` → `source/timewarp-quickbooks/timewarp-quickbooks.csproj`
+- [x] `Source/TimeWarp.QuickBooks/GlobalUsings.cs` → `source/timewarp-quickbooks/global-usings.cs`
+- [x] `Source/TimeWarp.QuickBooks/Api/IQuickBooksApiClient.cs` → `source/timewarp-quickbooks/api/i-quickbooks-api-client.cs`
+- [x] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiClient.cs` → `source/timewarp-quickbooks/api/quickbooks-api-client.cs`
+- [x] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiException.cs` → `source/timewarp-quickbooks/api/quickbooks-api-exception.cs`
+- [x] `Source/TimeWarp.QuickBooks/Api/QuickBooksApiOptions.cs` → `source/timewarp-quickbooks/api/quickbooks-api-options.cs`
+- [x] `Source/TimeWarp.QuickBooks/Api/QuickBooksHttpClient.cs` → `source/timewarp-quickbooks/api/quickbooks-http-client.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/IQuickBooksOAuthService.cs` → `source/timewarp-quickbooks/authentication/i-quickbooks-oauth-service.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/QuickBooksOAuthService.cs` → `source/timewarp-quickbooks/authentication/quickbooks-oauth-service.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/ServiceCollectionExtensions.cs` → `source/timewarp-quickbooks/authentication/service-collection-extensions.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksOAuthCallbackResult.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-oauth-callback-result.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksOAuthOptions.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-oauth-options.cs`
+- [x] `Source/TimeWarp.QuickBooks/Authentication/Models/QuickBooksTokens.cs` → `source/timewarp-quickbooks/authentication/models/quickbooks-tokens.cs`
+- [x] `Source/Overview.md` → `source/overview.md`
 
 #### 3.3 Rename Tests Structure
-- [ ] `Tests/` → `tests/`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/` → `tests/timewarp-quickbooks-tests/`
+- [x] `Tests/` → `tests/`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/` → `tests/timewarp-quickbooks-tests/`
 
 #### 3.4 Rename Test Files
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/TimeWarp.QuickBooks.Tests.csproj` → `tests/timewarp-quickbooks-tests/timewarp-quickbooks-tests.csproj`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/GlobalUsings.cs` → `tests/timewarp-quickbooks-tests/global-usings.cs`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/ConventionTests.cs` → `tests/timewarp-quickbooks-tests/convention-tests.cs`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/TestingConvention.cs` → `tests/timewarp-quickbooks-tests/testing-convention.cs`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/QuickBooksApiClient_Should_.cs` → `tests/timewarp-quickbooks-tests/quickbooks-api-client-should.cs`
-- [ ] `Tests/TimeWarp.QuickBooks.Tests/QuickBooksApiException_Should_.cs` → `tests/timewarp-quickbooks-tests/quickbooks-api-exception-should.cs`
-- [ ] `Tests/Overview.md` → `tests/overview.md`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/TimeWarp.QuickBooks.Tests.csproj` → `tests/timewarp-quickbooks-tests/timewarp-quickbooks-tests.csproj`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/GlobalUsings.cs` → `tests/timewarp-quickbooks-tests/global-usings.cs`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/ConventionTests.cs` → `tests/timewarp-quickbooks-tests/convention-tests.cs`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/TestingConvention.cs` → `tests/timewarp-quickbooks-tests/testing-convention.cs`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/QuickBooksApiClient_Should_.cs` → `tests/timewarp-quickbooks-tests/quickbooks-api-client-should.cs`
+- [x] `Tests/TimeWarp.QuickBooks.Tests/QuickBooksApiException_Should_.cs` → `tests/timewarp-quickbooks-tests/quickbooks-api-exception-should.cs`
+- [x] `Tests/Overview.md` → `tests/overview.md`
 
 #### 3.5 Rename Samples Structure
-- [ ] `Samples/` → `samples/`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/` → `samples/timewarp-quickbooks-sample-web/`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/Properties/` → `samples/timewarp-quickbooks-sample-web/properties/`
+- [x] `Samples/` → `samples/`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/` → `samples/timewarp-quickbooks-sample-web/`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/Properties/` → `samples/timewarp-quickbooks-sample-web/properties/`
 
 #### 3.6 Rename Sample Files
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/TimeWarp.QuickBooks.Sample.Web.csproj` → `samples/timewarp-quickbooks-sample-web/timewarp-quickbooks-sample-web.csproj`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/Program.cs` → `samples/timewarp-quickbooks-sample-web/program.cs`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/Properties/launchSettings.json` → `samples/timewarp-quickbooks-sample-web/properties/launch-settings.json`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/appsettings.Development.json` → `samples/timewarp-quickbooks-sample-web/appsettings.development.json`
-- [ ] `Samples/TimeWarp.QuickBooks.Sample.Web/README.md` → `samples/timewarp-quickbooks-sample-web/readme.md`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/TimeWarp.QuickBooks.Sample.Web.csproj` → `samples/timewarp-quickbooks-sample-web/timewarp-quickbooks-sample-web.csproj`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/Program.cs` → `samples/timewarp-quickbooks-sample-web/program.cs`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/Properties/launchSettings.json` → `samples/timewarp-quickbooks-sample-web/properties/launch-settings.json`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/appsettings.Development.json` → `samples/timewarp-quickbooks-sample-web/appsettings.development.json`
+- [x] `Samples/TimeWarp.QuickBooks.Sample.Web/README.md` → `samples/timewarp-quickbooks-sample-web/readme.md`
 
 #### 3.7 Update Build Property Files
-- [ ] `Directory.Build.props` → `directory.build.props`
-- [ ] `Directory.Packages.props` → `directory.packages.props`
+- [x] `Directory.Build.props` → `Directory.Build.props` (EXCEPTION: Must keep standard casing for MSBuild)
+- [x] `Directory.Packages.props` → `Directory.Packages.props` (EXCEPTION: Must keep standard casing for MSBuild)
 
-### Phase 4: Update All References
+### Phase 4: Update All References ✅ COMPLETED
 #### 4.1 Update Solution File
-- [ ] Update all project references in `timewarp-quickbooks.slnx`
+- [x] Update all project references in `timewarp-quickbooks.slnx`
 
 #### 4.2 Update Project File References
-- [ ] Update all `<ProjectReference>` paths in .csproj files
-- [ ] Update all `<PackageReference>` paths if any refer to local packages
+- [x] Update all `<ProjectReference>` paths in .csproj files
+- [x] Update all `<PackageReference>` paths if any refer to local packages
 
 #### 4.3 Update Directory.Build.props
-- [ ] Update `<PackageIcon>` path from `Assets\Logo.png` to `assets/logo.png`
-- [ ] Update `<None Include="$(MSBuildThisFileDirectory)Assets\Logo.png"` to use new path
-- [ ] Update `<PackageReadmeFile>` from `README.md` to `readme.md`
-- [ ] Update `<None Include="$(MSBuildThisFileDirectory)README.md"` to use new path
+- [x] Update `<PackageIcon>` path from `Assets\Logo.png` to `assets/logo.png`
+- [x] Update `<None Include="$(MSBuildThisFileDirectory)Assets\Logo.png"` to use new path
+- [x] Update `<PackageReadmeFile>` from `README.md` to `readme.md`
+- [x] Update `<None Include="$(MSBuildThisFileDirectory)README.md"` to use new path
 
 #### 4.4 Update Script References
-- [ ] Update any file paths in PowerShell scripts
-- [ ] Update paths in `run-tests.ps1` (formerly RunTests.ps1)
+- [x] Update any file paths in PowerShell scripts
+- [x] Update paths in `run-tests.ps1` (formerly RunTests.ps1)
 
 #### 4.5 Update Documentation Cross-References
 - [ ] Search and replace all internal documentation links to use new paths

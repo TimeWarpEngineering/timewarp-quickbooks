@@ -9,20 +9,20 @@ TimeWarp.QuickBooks is a .NET 9.0 library for QuickBooks Online integration. It 
 ## Common Commands
 
 ### Build and Test
-- **Run tests**: `pwsh run-tests.ps1` or `dotnet fixie Tests/TimeWarp.QuickBooks.Tests`
+- **Run tests**: `pwsh run-tests.ps1` or `dotnet fixie tests/timewarp-quickbooks-tests`
 - **Build solution**: `dotnet build timewarp-quickbooks.slnx`
-- **Run sample app**: `cd Samples/TimeWarp.QuickBooks.Sample.Web && dotnet run`
+- **Run sample app**: `cd samples/timewarp-quickbooks-sample-web && dotnet run`
 
 ### Project Structure
-- **Main library**: `Source/TimeWarp.QuickBooks/`
-- **Tests**: `Tests/TimeWarp.QuickBooks.Tests/`
-- **Sample application**: `Samples/TimeWarp.QuickBooks.Sample.Web/`
+- **Main library**: `source/timewarp-quickbooks/`
+- **Tests**: `tests/timewarp-quickbooks-tests/`
+- **Sample application**: `samples/timewarp-quickbooks-sample-web/`
 
 ## Architecture
 
 ### Core Components
 
-**Authentication Layer** (`Source/TimeWarp.QuickBooks/Authentication/`):
+**Authentication Layer** (`source/timewarp-quickbooks/authentication/`):
 - `IQuickBooksOAuthService`: Interface for OAuth operations (authorization URL generation, token handling, callback processing)
 - `QuickBooksOAuthService`: Implementation using Intuit's OAuth2Client
 - `Models/`: OAuth-related models including `QuickBooksTokens`, `QuickBooksOAuthOptions`, and `QuickBooksOAuthCallbackResult`

@@ -8,6 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Source\TimeWarp.QuickBooks\TimeWarp.QuickBooks.csproj" />
+    <ProjectReference Include="..\..\source\timewarp-quickbooks\timewarp-quickbooks.csproj" />
   </ItemGroup>
 </Project>
