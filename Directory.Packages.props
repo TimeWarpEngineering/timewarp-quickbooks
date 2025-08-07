@@ -9,8 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Script packages -->
+    <PackageVersion Include="TimeWarp.Amuru" Version="1.0.0-beta.1" />
+    
     <!-- QuickBooks SDK -->
     <PackageVersion Include="IppDotNetSdkForQuickBooksApiV3" Version="14.7.0" />
+    
+    <!-- Microsoft Extensions -->
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="9.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="9.0.2" />
     
     <!-- Testing packages -->
     <PackageVersion Include="Fixie.TestAdapter" Version="4.1.0" />
