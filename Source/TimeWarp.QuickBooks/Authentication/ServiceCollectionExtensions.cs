@@ -23,8 +23,9 @@ public static class ServiceCollectionExtensions
     // Register options
     services.Configure(configureOptions);
 
-    // Register the OAuth service
-    services.AddScoped<IQuickBooksOAuthService, QuickBooksOAuthService>();
+    // Register the OAuth service as Singleton for in-memory token storage
+    // Note: In production, use persistent storage instead of in-memory storage
+    services.AddSingleton<IQuickBooksOAuthService, QuickBooksOAuthService>();
 
     return services;
   }
@@ -44,8 +45,9 @@ public static class ServiceCollectionExtensions
     // Register options from configuration
     services.Configure<QuickBooksOAuthOptions>(configuration);
 
-    // Register the OAuth service
-    services.AddScoped<IQuickBooksOAuthService, QuickBooksOAuthService>();
+    // Register the OAuth service as Singleton for in-memory token storage
+    // Note: In production, use persistent storage instead of in-memory storage
+    services.AddSingleton<IQuickBooksOAuthService, QuickBooksOAuthService>();
 
     return services;
   }
