@@ -3,6 +3,7 @@
   <!-- Project-specific properties (if any) -->
   <PropertyGroup>
     <!-- Any project-specific properties that aren't in Directory.Build.props -->
+    <AssemblyName>TimeWarp.QuickBooks</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
