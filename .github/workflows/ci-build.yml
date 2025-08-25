@@ -33,13 +33,13 @@ jobs:
 
       - name: Build
         run: |
-          cd Source/TimeWarp.QuickBooks/
+          cd source/timewarp-quickbooks/
           dotnet build --configuration Debug
         shell: pwsh
 
       - name: Run Tests
         run: |
-          cd Tests/TimeWarp.QuickBooks.Tests/
+          cd tests/timewarp-quickbooks-tests/
           dotnet test --configuration Debug
 
       - run: echo "🍏 This job's status is ${{ job.status }}."

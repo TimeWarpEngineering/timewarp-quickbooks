@@ -32,8 +32,8 @@
     <RepositoryType>git</RepositoryType>
     <PackageTags>TimeWarp;QuickBooks</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageIcon>Logo.png</PackageIcon>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>read-me.md</PackageReadmeFile>
   </PropertyGroup>
 
   <!-- Source Link settings for deterministic builds -->
@@ -53,14 +53,14 @@
 
   <!-- Version information -->
   <PropertyGroup>
-    <Version>1.0.0-beta.1</Version>
+    <Version>1.0.0-beta.2</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
 
   <!-- Common package files -->
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Assets\Logo.png" Pack="true" PackagePath="\" Visible="false" />
-    <None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)assets\logo.png" Pack="true" PackagePath="\" Visible="false" />
+    <None Include="$(MSBuildThisFileDirectory)read-me.md" Pack="true" PackagePath="\" Visible="false" />
   </ItemGroup>
 </Project>
