@@ -6,6 +6,11 @@ namespace TimeWarp.QuickBooks.Authentication.Models;
 public class QuickBooksOAuthOptions
 {
   /// <summary>
+  /// The configuration section name for QuickBooks OAuth settings.
+  /// </summary>
+  public const string SectionName = "QuickBooksOAuth";
+
+  /// <summary>
   /// Gets or sets the client ID (consumer key) for the QuickBooks application.
   /// </summary>
   public string ClientId { get; set; } = string.Empty;

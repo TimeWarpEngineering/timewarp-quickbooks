@@ -34,16 +34,30 @@ public static class ServiceCollectionExtensions
   /// Adds QuickBooks OAuth services to the service collection.
   /// </summary>
   /// <param name="services">The service collection.</param>
-  /// <param name="configuration">The configuration section containing QuickBooks OAuth settings.</param>
+  /// <param name="configuration">The root configuration containing QuickBooks OAuth settings.</param>
   /// <returns>The service collection.</returns>
+  /// <exception cref="InvalidOperationException">Thrown when the QuickBooks configuration section is not found.</exception>
   public static IServiceCollection AddQuickBooksOAuth
   (
     this IServiceCollection services,
     IConfiguration configuration
   )
   {
-    // Register options from configuration
-    services.Configure<QuickBooksOAuthOptions>(configuration);
+    // Get the QuickBooks section from configuration
+    IConfigurationSection section = configuration.GetSection(QuickBooksOAuthOptions.SectionName);
+    
+    // Validate that the section exists
+    if (!section.Exists())
+    {
+      throw new InvalidOperationException
+      (
+        $"Configuration section '{QuickBooksOAuthOptions.SectionName}' not found. " +
+        "Please ensure your appsettings.json contains a 'QuickBooks' section with the required OAuth settings."
+      );
+    }
+
+    // Register options from the specific configuration section
+    services.Configure<QuickBooksOAuthOptions>(section);
 
     // Register the OAuth service as Singleton for in-memory token storage
     // Note: In production, use persistent storage instead of in-memory storage
@@ -56,19 +70,30 @@ public static class ServiceCollectionExtensions
   /// Adds QuickBooks API client services to the service collection.
   /// </summary>
   /// <param name="services">The service collection.</param>
-  /// <param name="configuration">The configuration containing QuickBooks API settings.</param>
+  /// <param name="configuration">The root configuration containing QuickBooks API settings.</param>
   /// <returns>The service collection.</returns>
+  /// <exception cref="InvalidOperationException">Thrown when the QuickBooksApi configuration section is not found.</exception>
   public static IServiceCollection AddQuickBooksApiClient
   (
     this IServiceCollection services,
     IConfiguration configuration
   )
   {
-    // Register options from configuration
-    services.Configure<QuickBooksApiOptions>
-    (
-      configuration.GetSection(QuickBooksApiOptions.SectionName)
-    );
+    // Get the QuickBooksApi section from configuration
+    IConfigurationSection section = configuration.GetSection(QuickBooksApiOptions.SectionName);
+    
+    // Validate that the section exists
+    if (!section.Exists())
+    {
+      throw new InvalidOperationException
+      (
+        $"Configuration section '{QuickBooksApiOptions.SectionName}' not found. " +
+        "Please ensure your appsettings.json contains a 'QuickBooksApi' section with the required API settings."
+      );
+    }
+
+    // Register options from the specific configuration section
+    services.Configure<QuickBooksApiOptions>(section);
 
     // Register the typed HTTP client
     services.AddHttpClient<QuickBooksHttpClient>();

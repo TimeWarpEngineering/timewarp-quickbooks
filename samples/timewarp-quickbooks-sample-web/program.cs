@@ -6,17 +6,8 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add QuickBooks OAuth service
-builder.Services.AddQuickBooksOAuth(options =>
-{
-  options.ClientId = builder.Configuration["QuickBooks:ClientId"] ?? string.Empty;
-  options.ClientSecret = builder.Configuration["QuickBooks:ClientSecret"] ?? string.Empty;
-  options.RedirectUri = builder.Configuration["QuickBooks:RedirectUri"] ?? string.Empty;
-  options.Environment = Enum.TryParse<QuickBooksEnvironment>(builder.Configuration["QuickBooks:Environment"], out var env)
-    ? env
-    : QuickBooksEnvironment.Sandbox;
-  options.Scopes = builder.Configuration.GetSection("QuickBooks:Scopes").Get<List<string>>() ?? new List<string>();
-});
+// Add QuickBooks OAuth service - now both methods use root configuration consistently
+builder.Services.AddQuickBooksOAuth(builder.Configuration);
 
 // Add QuickBooks API client service
 builder.Services.AddQuickBooksApiClient(builder.Configuration);
