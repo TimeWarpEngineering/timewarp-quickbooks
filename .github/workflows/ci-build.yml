@@ -33,7 +33,7 @@ jobs:
 
       - name: Build
         run: |
-          cd Source/TimeWarp.QuickBooks/
+          cd source/timewarp-quickbooks/
           dotnet build --configuration Debug
         shell: pwsh
 
