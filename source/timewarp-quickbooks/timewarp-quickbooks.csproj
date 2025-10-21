@@ -9,6 +9,10 @@
   <ItemGroup>
     <PackageReference Include="IppDotNetSdkForQuickBooksApiV3" />
     <PackageReference Include="Microsoft.Extensions.Http" />
+
+    <!-- Override vulnerable transitive dependencies from QuickBooks SDK -->
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
   </ItemGroup>
 
 </Project>

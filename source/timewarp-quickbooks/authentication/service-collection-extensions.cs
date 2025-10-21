@@ -52,7 +52,7 @@ public static class ServiceCollectionExtensions
       throw new InvalidOperationException
       (
         $"Configuration section '{QuickBooksOAuthOptions.SectionName}' not found. " +
-        "Please ensure your appsettings.json contains a 'QuickBooks' section with the required OAuth settings."
+        $"Please ensure your appsettings.json contains a '{QuickBooksOAuthOptions.SectionName}' section with the required OAuth settings."
       );
     }
 
