@@ -1,11 +1,11 @@
 <Solution>
-  <Folder Name="/Samples/">
-    <Project Path="Samples/TimeWarp.QuickBooks.Sample.Web/TimeWarp.QuickBooks.Sample.Web.csproj" />
+  <Folder Name="/samples/">
+    <Project Path="samples/timewarp-quickbooks-sample-web/timewarp-quickbooks-sample-web.csproj" />
   </Folder>
-  <Folder Name="/Source/">
-    <Project Path="Source/TimeWarp.QuickBooks/TimeWarp.QuickBooks.csproj" />
+  <Folder Name="/source/">
+    <Project Path="source/timewarp-quickbooks/timewarp-quickbooks.csproj" />
   </Folder>
-  <Folder Name="/Tests/">
-    <Project Path="Tests/TimeWarp.QuickBooks.Tests/TimeWarp.QuickBooks.Tests.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/timewarp-quickbooks-tests/timewarp-quickbooks-tests.csproj" />
   </Folder>
 </Solution>

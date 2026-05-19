@@ -5,8 +5,8 @@ on:
     branches:
       - master
     paths:
-      - 'Source/**'
-      - 'Tests/**'
+      - 'source/**'
+      - 'tests/**'
       - '.github/workflows/release-build.yml'
       - 'Directory.Build.props'
       - '*.props'
@@ -47,17 +47,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '10.0.x'
 
       - name: Build and Pack
         run: |
-          cd Source/TimeWarp.QuickBooks/
+          cd source/timewarp-quickbooks/
           dotnet build --configuration Release
           dotnet pack --configuration Release --output ./bin/Packages
 
       - name: Publish TimeWarp.QuickBooks
         run: |
-          cd Source/TimeWarp.QuickBooks/bin/Packages
+          cd source/timewarp-quickbooks/bin/Packages
           dotnet nuget push TimeWarp.QuickBooks.*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{secrets.PUBLISH_TO_NUGET_ORG}}
 
       - run: echo "🍏 This job's status is ${{ job.status }}."

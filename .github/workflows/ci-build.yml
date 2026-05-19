@@ -29,17 +29,17 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 10.0.x
 
       - name: Build
         run: |
-          cd Source/TimeWarp.QuickBooks/
+          cd source/timewarp-quickbooks/
           dotnet build --configuration Debug
         shell: pwsh
 
       - name: Run Tests
         run: |
-          cd Tests/TimeWarp.QuickBooks.Tests/
+          cd tests/timewarp-quickbooks-tests/
           dotnet test --configuration Debug
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
