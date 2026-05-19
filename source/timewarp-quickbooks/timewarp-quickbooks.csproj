@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Project-specific properties (if any) -->
+  <PropertyGroup>
+    <!-- Any project-specific properties that aren't in Directory.Build.props -->
+    <AssemblyName>TimeWarp.QuickBooks</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IppDotNetSdkForQuickBooksApiV3" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+
+    <!-- Override vulnerable transitive dependencies from QuickBooks SDK -->
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Include="System.Security.Cryptography.Xml" />
+  </ItemGroup>
+
+</Project>
