@@ -50,11 +50,11 @@ This project uses GitHub Actions for continuous integration and deployment:
 - **CI Build**: Runs on pull requests to validate code quality
 - **Release Build**: Automatically publishes new versions to NuGet when pushed to the master branch
 
-### Required GitHub Secrets
+### NuGet Publishing
 
-To use the GitHub Actions workflows, you need to configure the following secret in your repository:
+**Release Build** publishes to NuGet.org via [NuGet Trusted Publishing](https://learn.microsoft.com/en-us/nuget/nuget-org/trusted-publishing) (OIDC). The workflow uses `nuget/login@v1` with user `TimeWarp.Enterprises` and does not store a long-lived NuGet API key in the workflow.
 
-- `PUBLISH_TO_NUGET_ORG`: Your NuGet API key for publishing packages
+A trusted publishing policy must be configured on NuGet.org for this repository (owner: TimeWarp.Enterprises) before publish succeeds.
 
 ## Documentation
 

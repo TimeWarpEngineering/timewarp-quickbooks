@@ -75,4 +75,4 @@ Uses **TimeWarp.Fixie** testing framework with:
 
 **Documentation**: Comprehensive documentation in `Documentation/` with separate User and Developer sections.
 
-**CI/CD**: GitHub Actions workflows for CI builds and NuGet publishing (requires `PUBLISH_TO_NUGET_ORG` secret).
+**CI/CD**: GitHub Actions workflows for CI builds and NuGet publishing via NuGet Trusted Publishing (OIDC).
