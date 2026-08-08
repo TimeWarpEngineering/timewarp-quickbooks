@@ -1,0 +1,106 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pipeline mode. merge = build and test only (default). release = break-glass publish; also requires confirm.'
+        type: choice
+        options:
+          - merge
+          - release
+        default: merge
+      confirm:
+        description: 'Break-glass guard: type the word release to confirm publishing when mode is release. Ignored otherwise.'
+        type: string
+        default: ''
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write  # Required for NuGet Trusted Publishing (OIDC)
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Validate break-glass confirmation
+        if: github.event_name == 'workflow_dispatch' && inputs.mode == 'release' && inputs.confirm != 'release'
+        shell: bash
+        run: |
+          echo "::error::mode=release requires confirm=release. Refusing break-glass publish."
+          exit 1
+
+      # --- merge mode (push / PR / dispatch merge): build + test ---
+      - name: Build (CI)
+        if: >-
+          github.event_name == 'push' ||
+          github.event_name == 'pull_request' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'merge')
+        run: |
+          cd source/timewarp-quickbooks/
+          dotnet build --configuration Debug
+
+      - name: Run Tests
+        if: >-
+          github.event_name == 'push' ||
+          github.event_name == 'pull_request' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'merge')
+        run: |
+          cd tests/timewarp-quickbooks-tests/
+          dotnet test --configuration Debug
+
+      # --- release:published / break-glass: pack + OIDC push ---
+      - name: Build and Pack
+        if: >-
+          github.event_name == 'release' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'release' && inputs.confirm == 'release')
+        run: |
+          cd source/timewarp-quickbooks/
+          dotnet build --configuration Release
+          dotnet pack --configuration Release --output ./bin/Packages
+
+      - name: NuGet login (OIDC Trusted Publishing)
+        if: >-
+          github.event_name == 'release' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'release' && inputs.confirm == 'release')
+        id: nuget-login
+        uses: nuget/login@v1
+        with:
+          user: TimeWarp.Enterprises
+
+      - name: Publish TimeWarp.QuickBooks
+        if: >-
+          github.event_name == 'release' ||
+          (github.event_name == 'workflow_dispatch' && inputs.mode == 'release' && inputs.confirm == 'release')
+        run: |
+          cd source/timewarp-quickbooks/bin/Packages
+          dotnet nuget push TimeWarp.QuickBooks.*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ steps.nuget-login.outputs.NUGET_API_KEY }}
