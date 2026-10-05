@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using System.Text.Json.Serialization;
 using System.Web;
+using TimeWarp.QuickBooks.Api.Models;
 using TimeWarp.QuickBooks.Authentication;
 using TimeWarp.QuickBooks.Authentication.Models;
 
@@ -115,6 +116,38 @@ public class QuickBooksApiClient : IQuickBooksApiClient
     var request = QuickBooksHttpClient.CreateRequest(HttpMethod.Get, url);
     
     return await ExecuteRequestAsync<T>(realmId, request, cancellationToken);
+  }
+
+  /// <inheritdoc/>
+  public async Task<IReadOnlyList<Account>> GetAllAccountsAsync(string realmId, CancellationToken cancellationToken = default)
+  {
+    const int PageSize = 1000;
+    var accounts = new List<Account>();
+    int startPosition = 1;
+
+    while (true)
+    {
+      cancellationToken.ThrowIfCancellationRequested();
+
+      string query = $"SELECT * FROM Account STARTPOSITION {startPosition} MAXRESULTS {PageSize}";
+      AccountQueryResponseEnvelope? envelope = await QueryAsync<AccountQueryResponseEnvelope>(realmId, query, cancellationToken);
+      List<Account>? page = envelope?.QueryResponse?.Account;
+
+      if (page is null || page.Count == 0)
+        break;
+
+      accounts.AddRange(page);
+
+      if (Options.EnableDetailedLogging)
+        Logger.LogInformation("Retrieved {PageCount} accounts ({Total} total) for realm {RealmId}", page.Count, accounts.Count, realmId);
+
+      if (page.Count < PageSize)
+        break;
+
+      startPosition += PageSize;
+    }
+
+    return accounts;
   }
 
   private string BuildUrl(string realmId, string endpoint)
@@ -282,4 +315,4 @@ public class QuickBooksApiClient : IQuickBooksApiClient
 
     return clone;
   }
-}
+}

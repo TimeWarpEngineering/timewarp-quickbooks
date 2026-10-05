@@ -2,6 +2,7 @@ namespace TimeWarp.QuickBooks.Tests;
 using Shouldly;
 using TimeWarp.Fixie;
 using TimeWarp.QuickBooks.Api;
+using TimeWarp.QuickBooks.Api.Models;
 using TimeWarp.QuickBooks.Authentication;
 using TimeWarp.QuickBooks.Authentication.Models;
 
@@ -272,6 +273,110 @@ public class QuickBooksApiClient_Should_
     string requestContent = await testHandler.LastRequest!.Content!.ReadAsStringAsync();
     requestContent.ShouldContain("Updated Customer");
   }
+
+  private static HttpResponseMessage JsonResponse(string json) =>
+    new()
+    {
+      StatusCode = HttpStatusCode.OK,
+      Content = new StringContent(json, Encoding.UTF8, "application/json")
+    };
+
+  private static string BuildAccountsJson(int count, int startId, int startPosition)
+  {
+    var accounts = Enumerable.Range(startId, count).Select(id => new
+    {
+      Id = id.ToString(),
+      Name = $"Account {id}",
+      AccountType = "Expense",
+      Active = true
+    });
+
+    return JsonSerializer.Serialize(new
+    {
+      QueryResponse = new { Account = accounts, startPosition = startPosition, maxResults = count },
+      time = "2026-10-05T10:00:00.000-07:00"
+    });
+  }
+
+  public static async Task Return_All_Accounts_On_Single_Page()
+  {
+    // Arrange
+    var testHandler = new TestHttpMessageHandler();
+    var serviceProvider = CreateServiceProvider(testHandler);
+    await SetupTestTokens(serviceProvider);
+
+    var apiClient = serviceProvider.GetRequiredService<IQuickBooksApiClient>();
+    const string json = """
+      {
+        "QueryResponse": {
+          "Account": [
+            { "Id": "1", "Name": "Checking", "FullyQualifiedName": "Checking", "AccountType": "Bank", "Classification": "Asset", "Active": true, "CurrentBalance": 125.50, "ParentRef": { "value": "9", "name": "Banks" } },
+            { "Id": "2", "Name": "Savings", "AccountType": "Bank", "Active": true },
+            { "Id": "3", "Name": "Rent", "AccountType": "Expense", "Active": false }
+          ],
+          "startPosition": 1,
+          "maxResults": 3
+        },
+        "time": "2026-10-05T10:00:00.000-07:00"
+      }
+      """;
+    testHandler.EnqueueResponse(JsonResponse(json));
+
+    // Act
+    IReadOnlyList<Account> accounts = await apiClient.GetAllAccountsAsync("test-realm-id");
+
+    // Assert
+    accounts.Count.ShouldBe(3);
+    accounts[0].Name.ShouldBe("Checking");
+    accounts[0].CurrentBalance.ShouldBe(125.50m);
+    accounts[0].ParentRef.ShouldNotBeNull();
+    accounts[0].ParentRef!.Value.ShouldBe("9");
+    testHandler.Requests.Count.ShouldBe(1);
+    string query = testHandler.Requests[0].RequestUri!.Query;
+    query.ShouldContain("FROM+Account");
+    query.ShouldContain("STARTPOSITION+1");
+  }
+
+  public static async Task Page_Through_Accounts_When_Results_Exceed_Page_Size()
+  {
+    // Arrange
+    var testHandler = new TestHttpMessageHandler();
+    var serviceProvider = CreateServiceProvider(testHandler);
+    await SetupTestTokens(serviceProvider);
+
+    var apiClient = serviceProvider.GetRequiredService<IQuickBooksApiClient>();
+    testHandler.EnqueueResponse(JsonResponse(BuildAccountsJson(1000, 1, 1)));
+    testHandler.EnqueueResponse(JsonResponse(BuildAccountsJson(5, 1001, 1001)));
+
+    // Act
+    IReadOnlyList<Account> accounts = await apiClient.GetAllAccountsAsync("test-realm-id");
+
+    // Assert
+    accounts.Count.ShouldBe(1005);
+    accounts[1004].Id.ShouldBe("1005");
+    testHandler.Requests.Count.ShouldBe(2);
+    testHandler.Requests[0].RequestUri!.Query.ShouldContain("STARTPOSITION+1+");
+    testHandler.Requests[1].RequestUri!.Query.ShouldContain("STARTPOSITION+1001");
+  }
+
+  public static async Task Return_Empty_List_When_No_Accounts()
+  {
+    // Arrange
+    var testHandler = new TestHttpMessageHandler();
+    var serviceProvider = CreateServiceProvider(testHandler);
+    await SetupTestTokens(serviceProvider);
+
+    var apiClient = serviceProvider.GetRequiredService<IQuickBooksApiClient>();
+    testHandler.EnqueueResponse(JsonResponse("""{"QueryResponse":{}, "time":"2026-10-05T10:00:00.000-07:00"}"""));
+
+    // Act
+    IReadOnlyList<Account> accounts = await apiClient.GetAllAccountsAsync("test-realm-id");
+
+    // Assert
+    accounts.ShouldNotBeNull();
+    accounts.ShouldBeEmpty();
+    testHandler.Requests.Count.ShouldBe(1);
+  }
 }
 
 /// <summary>
@@ -282,7 +387,16 @@ public class TestHttpMessageHandler : HttpMessageHandler
   private HttpResponseMessage? _response;
   private Func<HttpResponseMessage>? _responseFactory;
   
+  private readonly Queue<HttpResponseMessage> _responseQueue = new();
+
   public HttpRequestMessage? LastRequest { get; private set; }
+
+  public List<HttpRequestMessage> Requests { get; } = [];
+
+  /// <summary>
+  /// Queues a response to be returned once, in FIFO order, before any fallback response.
+  /// </summary>
+  public void EnqueueResponse(HttpResponseMessage response) => _responseQueue.Enqueue(response);
   
   public void SetupResponse(HttpResponseMessage response)
   {
@@ -299,12 +413,18 @@ public class TestHttpMessageHandler : HttpMessageHandler
   protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
   {
     LastRequest = request;
+    Requests.Add(request);
     
     // Clone content if present to preserve it for assertions
     if (request.Content != null)
     {
       string contentString = await request.Content.ReadAsStringAsync(cancellationToken);
       request.Content = new StringContent(contentString, Encoding.UTF8, "application/json");
+    }
+    
+    if (_responseQueue.Count > 0)
+    {
+      return _responseQueue.Dequeue();
     }
     
     if (_responseFactory != null)

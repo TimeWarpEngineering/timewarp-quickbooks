@@ -20,15 +20,15 @@ complete chart of accounts. QuickBooks Online exposes accounts via
 ## Checklist
 
 ### Design
-- [ ] Add `Account` and query-envelope models under `api/models/`
-- [ ] Add `GetAllAccountsAsync` to interface and implementation
+- [x] Add `Account` and query-envelope models under `api/models/`
+- [x] Add `GetAllAccountsAsync` to interface and implementation
 ### Implementation
-- [ ] Pagination over 1000-row QuickBooks cap
-- [ ] Unit tests (single page, multi-page, empty)
-- [ ] Build + tests green
+- [x] Pagination over 1000-row QuickBooks cap
+- [x] Unit tests (single page, multi-page, empty)
+- [x] Build + tests green
 ### Documentation
-- [ ] XML docs on new public API
-- [ ] Mention chart of accounts in read-me / claude.md architecture notes
+- [x] XML docs on new public API
+- [x] Mention chart of accounts in read-me / claude.md architecture notes
 
 ## Session
 
@@ -38,3 +38,10 @@ complete chart of accounts. QuickBooks Online exposes accounts via
 
 - Id 013 collides with a legacy hand-numbered done task `013-remove-sync-configyml.md`; left as-is.
 - QBO query reference: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account#query-an-account
+
+## Implementation Notes
+
+- Models live in `source/timewarp-quickbooks/api/models/` (`Account`, `ReferenceType`, `ModificationMetaData`, `query-response.cs` with `QueryResponseEnvelope<T>`, `QueryResponsePage`, `AccountQueryResponse`, `AccountQueryResponseEnvelope`).
+- `GetAllAccountsAsync` pages 1000 rows at a time via `QueryAsync<AccountQueryResponseEnvelope>` and stops on an empty or short page.
+- `TestHttpMessageHandler` gained a FIFO `EnqueueResponse` queue and a `Requests` list; existing tests are unaffected.
+- `read-me.md` has no API client usage section, so only `claude.md` was updated.
