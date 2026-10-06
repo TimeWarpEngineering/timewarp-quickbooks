@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
   <!-- 
     This file centralizes package version management for all projects in the repository.
@@ -10,7 +11,7 @@
 
   <ItemGroup>
     <!-- Script packages -->
-    <PackageVersion Include="TimeWarp.Amuru" Version="1.0.0-beta.1" />
+    <PackageVersion Include="TimeWarp.Amuru" Version="1.0.0" />
 
     <!-- QuickBooks SDK -->
     <PackageVersion Include="IppDotNetSdkForQuickBooksApiV3" Version="14.7.0.1" />
@@ -29,5 +30,16 @@
     <PackageVersion Include="Fixie.TestAdapter" Version="4.1.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="TimeWarp.Fixie" Version="3.1.0" />
+    <!-- Repository-wide analyzers, generators, build tasks, and dev CLI (ganda repo audit) -->
+    <PackageVersion Include="TimeWarp.SourceGenerators" Version="1.0.0-beta.11" />
+    <PackageVersion Include="TimeWarp.Build.Tasks" Version="1.0.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.6.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageVersion>
+    <PackageVersion Include="TimeWarp.Nuru" Version="3.0.0-beta.76" />
+    <PackageVersion Include="TimeWarp.Nuru.DevCli" Version="3.0.0-beta.76" />
+    <PackageVersion Include="TimeWarp.Amuru.Tools" Version="1.0.0-beta.2" />
+    <PackageVersion Include="TimeWarp.Terminal" Version="1.0.2" />
   </ItemGroup>
 </Project>

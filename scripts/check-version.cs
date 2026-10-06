@@ -1,4 +1,4 @@
-#!/usr/bin/dotnet --
+#!/usr/bin/env -S dotnet --
 // CheckVersion.cs - Check if NuGet packages are already published
 #:package TimeWarp.Amuru
 
