@@ -27,6 +27,10 @@ TimeWarp.QuickBooks is a .NET 9.0 library for QuickBooks Online integration. It 
 - `QuickBooksOAuthService`: Implementation using Intuit's OAuth2Client
 - `Models/`: OAuth-related models including `QuickBooksTokens`, `QuickBooksOAuthOptions`, and `QuickBooksOAuthCallbackResult`
 
+**API Client** (`source/timewarp-quickbooks/api/`):
+- `IQuickBooksApiClient` / `QuickBooksApiClient`: Generic `GetAsync`/`PostAsync`/`PutAsync`/`DeleteAsync`/`QueryAsync<T>` plus typed helpers. `GetAllAccountsAsync` returns the full chart of accounts, paging with `STARTPOSITION`/`MAXRESULTS` past the 1000-row query limit.
+- `models/`: Typed QuickBooks entities and query envelopes (`Account`, `ReferenceType`, `ModificationMetaData`, `QueryResponseEnvelope<T>`, `AccountQueryResponseEnvelope`) in the `TimeWarp.QuickBooks.Api.Models` namespace.
+
 **Service Registration**:
 - `ServiceCollectionExtensions.cs`: Contains `AddQuickBooksOAuth()` extension method for DI registration
 

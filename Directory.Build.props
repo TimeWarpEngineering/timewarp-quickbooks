@@ -1,4 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
+  <Import Project="$(MSBuildThisFileDirectory)msbuild/repository.props" />
   <!-- 
     This file contains common MSBuild properties and items that are automatically imported
     by all projects in this repository. It centralizes common settings to ensure consistency
@@ -62,5 +64,12 @@
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)assets\logo.png" Pack="true" PackagePath="\" Visible="false" />
     <None Include="$(MSBuildThisFileDirectory)read-me.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+  <!-- Repository-wide analyzers, generators, and build tasks (ganda repo audit) -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)BannedSymbols.txt" />
+    <PackageReference Include="TimeWarp.SourceGenerators" PrivateAssets="all" />
+    <PackageReference Include="TimeWarp.Build.Tasks" PrivateAssets="all" />
   </ItemGroup>
 </Project>

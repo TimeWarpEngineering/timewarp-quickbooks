@@ -1,5 +1,7 @@
 namespace TimeWarp.QuickBooks.Api;
 
+using TimeWarp.QuickBooks.Api.Models;
+
 /// <summary>
 /// Defines the contract for interacting with the QuickBooks API.
 /// </summary>
@@ -55,4 +57,12 @@ public interface IQuickBooksApiClient
   /// <param name="cancellationToken">The cancellation token.</param>
   /// <returns>The deserialized response or null if the response is empty.</returns>
   Task<T?> QueryAsync<T>(string realmId, string query, CancellationToken cancellationToken = default);
+
+  /// <summary>
+  /// Retrieves the complete chart of accounts for the company, paging past the QuickBooks 1000-row query limit.
+  /// </summary>
+  /// <param name="realmId">The Realm ID (Company ID) for the request.</param>
+  /// <param name="cancellationToken">The cancellation token.</param>
+  /// <returns>All accounts for the company, or an empty list if there are none.</returns>
+  Task<IReadOnlyList<Account>> GetAllAccountsAsync(string realmId, CancellationToken cancellationToken = default);
 }
