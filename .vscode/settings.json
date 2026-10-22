@@ -19,5 +19,7 @@
     "titleBar.inactiveForeground": "#15202b99"
   },
   "peacock.remoteColor": "#DDE444",
-  "timewarp.blurImagePath": "assets/timewarp-quickbooks-avatar.svg"
+  "timewarp.blurImagePath": "assets/timewarp-quickbooks-avatar.svg",
+  "window.title": "timewarp-quickbooks · ${rootName}${separator}${activeEditorShort}",
+  "peacock.color": "#DDE444"
 }
