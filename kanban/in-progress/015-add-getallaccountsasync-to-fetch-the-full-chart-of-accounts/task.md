@@ -36,7 +36,7 @@ complete chart of accounts. QuickBooks Online exposes accounts via
 
 ## Notes
 
-- Id 013 collides with a legacy hand-numbered done task `013-remove-sync-configyml.md`; left as-is.
+- Id 013 collided with done task `013-remove-sync-configyml.md`; renumbered to 015 via `ganda kanban reserve` (2026-10-22).
 - QBO query reference: https://developer.intuit.com/app/developer/qbo/docs/api/accounting/all-entities/account#query-an-account
 
 ## Implementation Notes
