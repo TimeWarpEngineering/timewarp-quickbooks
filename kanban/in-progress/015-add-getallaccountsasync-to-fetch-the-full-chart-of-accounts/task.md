@@ -63,3 +63,17 @@ fixes were folded into this PR via `ganda repo audit --fix`:
     Reduced to `<Version>1.0.0-beta.3</Version>` only; root remains the value `scripts/check-version.cs` reads.
   - Removed stray `tools/dev-cli/source/Directory.Build.props` scaffold copy.
 - `bin/dev` is gitignored; bootstrap locally with `dotnet run tools/dev-cli/dev.cs -- self-install`.
+
+## Audit fold-in (2026-10-22)
+
+Second `ganda repo audit --fix` pass (kanban-porcelain-gitignore, routine-journals-gitignore, nuru):
+
+- Fixer: Nuru + Nuru.DevCli 3.0.0-beta.76 → 4.0.0-beta.5, Amuru + Amuru.Tools → 2.0.0, gitignore
+  review-round / mission-heartbeat patterns, memsearch comment trims in `.githooks/post-*.cs`,
+  deleted `.memsearch.toml`.
+- Nuru 4 migration of `tools/dev-cli`: `ICommand<>` / `ICommandHandler<,>` / `Unit` now come from
+  `TimeWarp.Mediator`; command + handler types public; `ValueTask<Unit>` → `Task<Unit>`.
+  `GenerateDocumentationFile=false` in `tools/dev-cli/Directory.Build.props` (MSB3030 on self-install, as timewarp-flow).
+- Amuru 2 migration of `scripts/check-version.cs`: `#:package TimeWarp.Amuru.Tools` + `TimeWarp.Terminal`,
+  `CaptureAsync()` / `Stdout`, `Console` → `TimeWarp.Terminal.Terminal` (RS0030).
+- Verified: solution build, `self-install`, `bin/dev test` (21 passed, 4 skipped), audit clean.

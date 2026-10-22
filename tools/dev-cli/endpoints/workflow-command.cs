@@ -12,9 +12,9 @@
 namespace DevCli.Commands;
 
 [NuruRoute("workflow", Description = "Execute full CI workflow")]
-internal sealed class WorkflowCommand : ICommand<Unit>
+public sealed class WorkflowCommand : ICommand<Unit>
 {
-  internal sealed class Handler : ICommandHandler<WorkflowCommand, Unit>
+  public sealed class Handler : ICommandHandler<WorkflowCommand, Unit>
   {
     private readonly ITerminal Terminal;
     private CancellationToken Ct;
@@ -26,18 +26,18 @@ internal sealed class WorkflowCommand : ICommand<Unit>
       Terminal = terminal;
     }
 
-    public async ValueTask<Unit> Handle(WorkflowCommand command, CancellationToken ct)
+    public async Task<Unit> Handle(WorkflowCommand command, CancellationToken ct)
     {
       Ct = ct;
 
-      if (!FindRepoRoot()) return Value;
-      if (!await SelfInstallAsync()) return Value;
-      if (!await RunStepAsync("clean", "Clean failed!")) return Value;
-      if (!await RunStepAsync("build", "Build failed!")) return Value;
-      if (!await RunStepAsync("test", "Tests failed!")) return Value;
+      if (!FindRepoRoot()) return Unit.Value;
+      if (!await SelfInstallAsync()) return Unit.Value;
+      if (!await RunStepAsync("clean", "Clean failed!")) return Unit.Value;
+      if (!await RunStepAsync("build", "Build failed!")) return Unit.Value;
+      if (!await RunStepAsync("test", "Tests failed!")) return Unit.Value;
 
       Terminal.WriteLine("\nWorkflow completed successfully!".Green());
-      return Value;
+      return Unit.Value;
     }
 
     private bool FindRepoRoot()

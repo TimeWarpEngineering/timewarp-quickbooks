@@ -16,7 +16,7 @@ global using System.Net.Http;
 global using System.Text.Json;
 
 global using TimeWarp.Nuru;
-global using static TimeWarp.Nuru.Unit;
+global using TimeWarp.Mediator;
 global using TimeWarp.Amuru;
 global using TimeWarp.Terminal;
 global using DevCli;

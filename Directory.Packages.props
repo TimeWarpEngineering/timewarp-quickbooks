@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <!-- Script packages -->
-    <PackageVersion Include="TimeWarp.Amuru" Version="1.0.0" />
+    <PackageVersion Include="TimeWarp.Amuru" Version="2.0.0" />
 
     <!-- QuickBooks SDK -->
     <PackageVersion Include="IppDotNetSdkForQuickBooksApiV3" Version="14.7.0.1" />
@@ -37,9 +37,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageVersion>
-    <PackageVersion Include="TimeWarp.Nuru" Version="3.0.0-beta.76" />
-    <PackageVersion Include="TimeWarp.Nuru.DevCli" Version="3.0.0-beta.76" />
-    <PackageVersion Include="TimeWarp.Amuru.Tools" Version="1.0.0-beta.2" />
+    <PackageVersion Include="TimeWarp.Nuru" Version="4.0.0-beta.5" />
+    <PackageVersion Include="TimeWarp.Nuru.DevCli" Version="4.0.0-beta.5" />
+    <PackageVersion Include="TimeWarp.Amuru.Tools" Version="2.0.0" />
     <PackageVersion Include="TimeWarp.Terminal" Version="1.0.2" />
   </ItemGroup>
 </Project>

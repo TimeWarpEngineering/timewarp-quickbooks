@@ -8,9 +8,9 @@
 namespace DevCli.Commands;
 
 [NuruRoute("verify-samples", Description = "Verify code samples compile")]
-internal sealed class VerifySamplesCommand : ICommand<Unit>
+public sealed class VerifySamplesCommand : ICommand<Unit>
 {
-  internal sealed class Handler : ICommandHandler<VerifySamplesCommand, Unit>
+  public sealed class Handler : ICommandHandler<VerifySamplesCommand, Unit>
   {
     private readonly ITerminal Terminal;
 
@@ -19,12 +19,12 @@ internal sealed class VerifySamplesCommand : ICommand<Unit>
       Terminal = terminal;
     }
 
-    public ValueTask<Unit> Handle(VerifySamplesCommand command, CancellationToken ct)
+    public Task<Unit> Handle(VerifySamplesCommand command, CancellationToken ct)
     {
       Terminal.WriteLine("Verifying samples...");
       // TODO: Implement sample verification logic specific to this repo
       Terminal.WriteLine("Samples verified successfully!");
-      return ValueTask.FromResult(Value);
+      return Task.FromResult(Unit.Value);
     }
   }
 }

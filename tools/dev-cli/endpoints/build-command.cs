@@ -10,7 +10,7 @@
 namespace DevCli.Commands;
 
 [NuruRoute("build", Description = "Build all projects in the repository")]
-internal sealed class BuildCommand : ICommand<Unit>
+public sealed class BuildCommand : ICommand<Unit>
 {
   [Option("clean", "c", Description = "Clean before building")]
   public bool Clean { get; set; }
@@ -18,7 +18,7 @@ internal sealed class BuildCommand : ICommand<Unit>
   [Option("quiet", "q", Description = "Hide build output unless the command fails")]
   public bool Quiet { get; set; }
 
-  internal sealed class Handler : ICommandHandler<BuildCommand, Unit>
+  public sealed class Handler : ICommandHandler<BuildCommand, Unit>
   {
     private readonly ITerminal Terminal;
     private BuildCommand Command = null!;
@@ -30,17 +30,17 @@ internal sealed class BuildCommand : ICommand<Unit>
       Terminal = terminal;
     }
 
-    public async ValueTask<Unit> Handle(BuildCommand command, CancellationToken ct)
+    public async Task<Unit> Handle(BuildCommand command, CancellationToken ct)
     {
       Command = command;
       Ct = ct;
 
-      if (!FindRepoRoot()) return Value;
-      if (!await CleanAsync()) return Value;
-      if (!await BuildAsync()) return Value;
+      if (!FindRepoRoot()) return Unit.Value;
+      if (!await CleanAsync()) return Unit.Value;
+      if (!await BuildAsync()) return Unit.Value;
 
       Terminal.WriteLine("\nBuild completed successfully!".Green());
-      return Value;
+      return Unit.Value;
     }
 
     private bool FindRepoRoot()

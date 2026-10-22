@@ -1,10 +1,12 @@
 #!/usr/bin/env -S dotnet --
 // CheckVersion.cs - Check if NuGet packages are already published
 #:package TimeWarp.Amuru
+#:package TimeWarp.Amuru.Tools
+#:package TimeWarp.Terminal
 
 using System.Xml.Linq;
 using TimeWarp.Amuru;
-using static System.Console;
+using static TimeWarp.Terminal.Terminal;
 
 // Change to script directory for relative paths
 string scriptDir = (AppContext.GetData("EntryPointFileDirectoryPath") as string)!;
@@ -37,10 +39,10 @@ foreach (string package in packages)
         .WithSource("https://api.nuget.org/v3/index.json")
         .Build();
 
-    ExecutionResult result = await searchResult.ExecuteAsync();
+    CommandOutput result = await searchResult.CaptureAsync();
 
     // Check if the version appears in the output
-    if (result.StandardOutput.Contains($"| {version} |", StringComparison.Ordinal))
+    if (result.Stdout.Contains($"| {version} |", StringComparison.Ordinal))
     {
         WriteLine($"⚠️  WARNING: {package} {version} is already published to NuGet.org");
         anyPublished = true;
